@@ -1,0 +1,94 @@
+{
+    "layer": "top",
+    "modules-left": ["hyprland/workspaces", "pulseaudio"],
+    "modules-center": ["clock", "hyprland/workspaces#2"],
+    "modules-right": ["battery", "swipe-in", "network", "tray"],
+
+    "battery": {
+        "states": {
+            "good": 95,
+            "visible": 80,
+            "warning": 15,
+            "critical": 10
+        },
+        "format": "{capacity}% {icon}",
+        "format-icons": ["󰂎", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "format-good": "", // hide
+        "format-full": "", // hide
+    },
+
+    "clock": {
+        "format": "{:%a, %m/%d/%y  %H:%M}",
+        "format-alt": "{:%m/%d/%y  %H:%M} UTC",
+        //"tooltip-format": "<tt><small>{calendar}</small></tt>",
+        //"tooltip-format": "{tz_list}",
+        "tooltip": false,
+        "timezones": ["", "Etc/UTC"], //use php supported zone names
+        "actions": {
+            "on-click": "tz_up"
+        },
+    },
+
+    "tray": {
+        // "icon-size": 21,
+        //"spacing": 10
+    },
+
+    "network": {
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "󰤮", //󰖪 
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "on-click-right": "pgrep nm-applet > /dev/null && pkill nm-applet || nohup nm-applet &> /dev/null &"
+    },
+
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "󰂰 {volume}%",
+        "format-bluetooth-muted": "",
+        "format-muted": "󰖁",
+        "format-source-muted": "",
+        "format-icons": {
+            "default": "󰕾",
+            "headphone": " ",
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "on-click": "activate",
+        "all-outputs": false,
+        "show-special": false,
+        "format": "{name}",
+        "on-scroll-up": "hyprctl dispatch workspace m-1 > /dev/null",
+        "on-scroll-down": "hyprctl dispatch workspace m+1 > /dev/null",
+    },
+
+    "hyprland/workspaces#2": {
+        "disable-scroll": true,
+        /*"active-only": true,*/
+        "show-special": true,
+        "special-visible-only": true,
+        "ignore-workspaces": [
+            "^(?!.*special:).*"
+        ],
+        "format": "{icon}",
+        "format-icons": {
+            "urgent": "",
+            "focused": "",
+            "default": "",
+            "active": ""
+        }
+    },
+
+
+    "hyprland/window": {
+        "max-length": 50,
+        "separate-outputs": true
+    },
+}
+

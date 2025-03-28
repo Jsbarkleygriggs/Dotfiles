@@ -1,0 +1,22 @@
+use something like
+"""
+local lfs = require("lfs")  -- Make sure you have the Lua File System library
+
+local function require_keymaps_from_dir(dir)
+    for file in lfs.dir(dir) do
+        if file:match("%.keymaps%.lua$") then  -- Match files ending with .keymaps.lua
+            require(dir .. '.' .. file:gsub("%.lua$", ""))  -- Require the file, removing the .lua extension
+        end
+    end
+end
+
+-- Call the function with your directory path
+require_keymaps_from_dir("path.to.your.directory")
+"""
+to seperate the massive keymaps file into reasonable smaller files, organized per their plugin counterparts or individual pluggins
+
+make clear and reset work proper
+
+finish transfering and compering files between versions 
+
+update neorg rebinding fix 
